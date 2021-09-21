@@ -1,0 +1,19 @@
+{
+  "name": "github-terminal-viewer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.10.1",
+    "graphql": "^15.5.3",
+    "graphql-request": "^3.5.0",
+    "telnet2": "^0.0.1"
+  }
+}
