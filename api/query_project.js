@@ -1,10 +1,14 @@
 const { GraphQLClient, gql } = require('graphql-request')
+const yaml = require('js-yaml')
+const fs = require('fs')
 
 const endpoint = 'https://api.github.com/graphql'
 
+const doc = yaml.load(fs.readFileSync('./config.yaml', 'utf-8'))
+
 const graphQLClient = new GraphQLClient(endpoint, {
   headers: {
-    authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+    authorization: `Bearer ${doc.access_token}`,
   },
 })
 
@@ -34,8 +38,8 @@ const query = gql`
 `
 
 const variables = {
-    name: "PersonalTaskManagement",
-    owner: "kiyo27"
+    name: doc.repository,
+    owner: doc.owner
 }
 
 

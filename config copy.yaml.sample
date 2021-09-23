@@ -1,0 +1,7 @@
+repository: repository-name
+owner: repository-owner
+access_token: xxxxxx
+columns:
+  - Backlog
+  - In Progress
+  - Done
