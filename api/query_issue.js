@@ -1,35 +1,34 @@
-const { GraphQLClient, gql } = require('graphql-request')
+const { gql } = require('graphql-request')
+const proxy = require('./proxy')
+const config = require('../util/yaml')
 
-const endpoint = 'https://api.github.com/graphql'
-
-const graphQLClient = new GraphQLClient(endpoint, {
-  headers: {
-    authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
-  },
-})
-
-const query = gql`
-  query getIssues($name: String!, $owner: String!, $number: Int!) {
-    repository(name: $name, owner: $owner) {
-      issue(number: $number) {
-        body
+async function getIssueBodyByNumber(number) {
+  const query = gql`
+    query getIssues($name: String!, $owner: String!, $number: Int!) {
+      repository(name: $name, owner: $owner) {
+        issue(number: $number) {
+          body
+        }
+      }
     }
-    }
-  }
-`
+  `
 
-module.exports = async function main(number) {
   const variables = {
-    name: "PersonalTaskManagement",
-    owner: "kiyo27",
+    name: config.repository,
+    owner: config.owner,
     number: number
   }
-  const data = await graphQLClient.request(query, variables)
-  const decode = JSON.stringify(data)
-  // console.log(data.repository.issues.nodes)
+
+  const key = `IssueBody#${number}`
+
+  const data = await proxy.request(key, query, variables)
   return data.repository.issue.body
+
+  // return { key, query, variables }
+  // const data = await client.GraphQL(query, variables)
 }
 
-// module.exports = {
-//   body: main
-// }
+
+module.exports = {
+  getIssueBodyByNumber
+}

@@ -24,8 +24,7 @@ module.exports = class {
 
     this.column.on('blur', this._blur.bind(this))
     this.column.on('focus', this._focus.bind(this))
-    this.column.on('select', this.select.bind(this))
-
+    // this.column.on('select', this.getIssueNumber.bind(this))
   }
 
   focus() {
@@ -41,15 +40,27 @@ module.exports = class {
     this.column.style.selected.bg = 'default'
   }
 
+  show() {
+    this.column.show()
+  }
+
+  hide() {
+    this.column.hide()
+  }
+
   toggle() {
     this.column.toggle()
   }
 
-  select(el) {
-    const title = el.options.content
-    const re = /^.*\s#(\d{1,})$/
-    const result = title.match(re)
-    // const issueNumber = result[1]
+  getIssueNumber(el) {
+    // const title = el.options.content
+    const title = el.value
+    if (title) {
+      const re = /^.*\s#(\d{1,})$/
+      const result = title.match(re)
+      const issueNumber = result[1]
+      return issueNumber
+    }
   }
 
   addItem(title, number) {

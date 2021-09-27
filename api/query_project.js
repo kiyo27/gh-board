@@ -45,7 +45,7 @@ const variables = {
 
 async function main() {
   const data = await graphQLClient.request(query, variables)
-  const decode = JSON.stringify(data)
+  // const decode = JSON.stringify(data)
   // console.log(data.repository.issues.nodes)
   return data.repository.project.columns.nodes
 }
