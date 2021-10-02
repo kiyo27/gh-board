@@ -10,7 +10,7 @@ const screen = blessed.screen({
   fullUnicode: true,
   log: 'list.log',
   debug: true,
-  // dump: true
+  // dump: 'list.log'
 });
 
 new kanban(screen)

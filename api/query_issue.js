@@ -23,9 +23,6 @@ async function getIssueBodyByNumber(number) {
 
   const data = await proxy.request(key, query, variables)
   return data.repository.issue.body
-
-  // return { key, query, variables }
-  // const data = await client.GraphQL(query, variables)
 }
 
 

@@ -1,4 +1,4 @@
-const blessed = require('blessed')
+// const blessed = require('blessed')
 const contrib = require('blessed-contrib')
 const column = require('../../components/organisms/column')
 const markdown = require('../../components/organisms/markdown')
@@ -6,15 +6,19 @@ const footer = require('../organisms/footer')
 
 module.exports = class {
 
-  constructor(screen) {
+  constructor(screen, labels) {
 
-    const grid = new contrib.grid({rows: 12, cols: 12, screen: screen})
+    const [rows, cols] = [12, 12]
+    const grid = new contrib.grid({ rows, cols, screen})
 
-    this.columns = [
-      new column(grid, [0,0,11,4], {label: 'Backlog'}),
-      new column(grid, [0,4,11,4], {label: 'In Progress'}),
-      new column(grid, [0,8,11,4], {label: 'Done'})
-    ]
+    let colSpan = 0
+    const colIncrement = labels.length + 1
+
+    this.columns = labels.map(label => {
+      const c = new column(grid, [0, colSpan, 11, 4], { label })
+      colSpan += colIncrement
+      return c
+    })
 
     this.markdown = new markdown(grid)
     this.markdown.hide()
