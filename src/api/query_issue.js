@@ -1,6 +1,6 @@
 const { gql } = require('graphql-request')
 const proxy = require('./proxy')
-const config = require('../util/yaml')
+const config = require('../util/config')
 
 async function getIssueBodyByNumber(number) {
   const query = gql`
@@ -14,7 +14,7 @@ async function getIssueBodyByNumber(number) {
   `
 
   const variables = {
-    name: config.repository,
+    name: config.name,
     owner: config.owner,
     number: number
   }

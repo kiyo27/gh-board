@@ -15,7 +15,7 @@ module.exports = class {
     const colIncrement = labels.length + 1
 
     this.columns = labels.map(label => {
-      const c = new column(grid, [0, colSpan, 11, 4], { label })
+      const c = new column(grid, [0, colSpan, 11, 12 / labels.length], { label })
       colSpan += colIncrement
       return c
     })

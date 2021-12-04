@@ -1,8 +1,5 @@
 const blessed = require('blessed');
-const contrib = require('blessed-contrib')
-const query = require('./api/query_project')
-const chalk = require('chalk')
-const kanban = require('./components/pages/kanban')
+const kanban = require('./src/components/pages/kanban')
 
 // Create a screen object.
 const screen = blessed.screen({

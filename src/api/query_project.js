@@ -1,14 +1,10 @@
 const { GraphQLClient, gql } = require('graphql-request')
-const yaml = require('js-yaml')
-const fs = require('fs')
-
+const config = require('../util/config')
 const endpoint = 'https://api.github.com/graphql'
-
-const doc = yaml.load(fs.readFileSync('./config.yaml', 'utf-8'))
 
 const graphQLClient = new GraphQLClient(endpoint, {
   headers: {
-    authorization: `Bearer ${doc.access_token}`,
+    authorization: `Bearer ${config.pat}`,
   },
 })
 
@@ -38,15 +34,13 @@ const query = gql`
 `
 
 const variables = {
-    name: doc.repository,
-    owner: doc.owner
+    name: config.name,
+    owner: config.owner
 }
 
 
 async function main() {
   const data = await graphQLClient.request(query, variables)
-  // const decode = JSON.stringify(data)
-  // console.log(data.repository.issues.nodes)
   return data.repository.project.columns.nodes
 }
 

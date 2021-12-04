@@ -1,7 +1,8 @@
 const KanbanTemplate = require('../templates/kanban')
 const query = require('../../api/query_project')
 const issue = require('../../api/query_issue')
-const config = require('../../util/yaml')
+// const config = require('../../util/yaml')
+const config = require('../../util/config')
 
 module.exports = class {
   constructor(screen) {
@@ -84,9 +85,10 @@ module.exports = class {
       data.forEach(nodes => {
         let index = this.labels.indexOf(nodes.name)
         nodes.cards.nodes.forEach(content => {
-          this.kanban.columns[index].addItem(content.content.title, content.content.number)
+          if (this.kanban.columns[index] !== undefined) {
+            this.kanban.columns[index].addItem(content.content.title, content.content.number)
+          }
         })
-
       })
       this.screen.render()
     })
