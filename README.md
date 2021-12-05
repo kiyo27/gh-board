@@ -2,14 +2,14 @@
 
 GitHub Projects 専用のターミナルビューワー。ターミナル上で、プロジェクトボードと issue を確認できる。
 
-![term](img/terminal.gif)
+![term](.github/assets/terminal.gif)
 
 ## Prerequisite
 
 - GitHubにプロジェクトボードが存在する
 - api token を持っている
 
-![project](img/project.png)
+![project](.github/assets/project.png)
 
 ## Quick Start
 
