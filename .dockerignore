@@ -2,3 +2,5 @@ example
 img
 doc
 node_modules
+.git
+.github
