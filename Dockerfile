@@ -1,6 +1,8 @@
 FROM node:17-bullseye-slim
 
-LABEL org.opencontainers.image.source https://github.com/kiyo27/gh-project-terminal-viewer
+ARG REPO_NAME
+
+LABEL org.opencontainers.image.source https://github.com/$REPO_NAME
 
 # Environment variables
 ENV LANG='ja_JP.UTF-8'

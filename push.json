@@ -1,0 +1,9 @@
+{
+  "repository" : {
+    "id": 1,
+    "full_name": "kiyo27/gh-board"
+  },
+  "release": {
+      "tag_name": "0.0.1-alpha"
+  }
+}
