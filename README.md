@@ -20,7 +20,7 @@ GitHub Projects 専用のターミナルビューワー。ターミナル上で�
 ソースコードと実行環境が含まれている Docker image が用意されている。次のコマンドを使用して最新の Docker image をダウンロードする。
 
 ```
-docker pull ghcr.io/kiyo27/gh-board:latest
+docker pull ghcr.io/kiyo27/gh-board:0.1.0-beta
 ```
 
 ``gh-board``で表示したいプロジェクトボードとプロジェクトボードが紐づいているリポジトリを環境変数で設定する。もし環境変数で設定したリポジトリが GitHub 上に作られていなければ、同名のリポジトリが自動的に作成される。プロジェクトボードも同様にリポジトリ内に存在していなければ、自動的に作成される。``gh-board``と GitHub 間で API 通信を行うため、GitHub から設定・取得した個人アクセストークンも環境変数に設定する。
