@@ -47,4 +47,4 @@ async function main() {
   return data.repository.projects.nodes[0].columns.nodes
 }
 
-exports.project = main
+exports.project = main()

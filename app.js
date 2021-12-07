@@ -1,6 +1,4 @@
 const argv = require('yargs/yargs')(process.argv.slice(2)).argv;
-const blessed = require('blessed');
-const kanban = require('./src/components/pages/kanban')
 
 function run() {
 
@@ -10,6 +8,9 @@ function run() {
   }
 
   if (argv.up) {
+    const blessed = require('blessed');
+    const kanban = require('./src/components/pages/kanban')
+    
     // Create a screen object.
     const screen = blessed.screen({
       smartCSR: true,

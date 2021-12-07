@@ -80,7 +80,7 @@ module.exports = class {
   }
 
   addItem() {
-    query.project().then(data => {
+    query.project.then(data => {
       data.forEach(nodes => {
         let index = this.labels.indexOf(nodes.name)
         nodes.cards.nodes.forEach(content => {

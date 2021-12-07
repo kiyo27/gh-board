@@ -1,7 +1,7 @@
 const { Octokit } = require("@octokit/core");
 
 async function run() {
-  const repo = process.env.REPO_NAME || 'api-sample'
+  const repo = process.env.REPO_NAME || 'board-sample'
   const owner = process.env.REPO_OWNER || null
   const project = process.env.PROJECT_NAME || 'SampleProject'
   const pat = process.env.ACCESS_TOKEN || null
@@ -47,8 +47,8 @@ async function run() {
 
   // Create a sample issue
   const issue = await octokit.graphql(
-    `mutation ($title: String!, $projectIds: ID!, $repoId: ID!) {
-      createIssue(input:{title: $title, projectIds: $projectIds, repositoryId: $repoId}) {
+    `mutation ($title: String!, $body: String!, $projectIds: ID!, $repoId: ID!) {
+      createIssue(input:{title: $title, body: $body projectIds: $projectIds, repositoryId: $repoId}) {
         issue {
           projectCards(first: 1) {
             nodes {
@@ -60,6 +60,7 @@ async function run() {
     }`,
     {
       title: "Hello world!",
+      body: "This is a sample issue.",
       projectIds: data.node_id,
       repoId: repoInfo.data.node_id
     }
