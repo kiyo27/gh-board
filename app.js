@@ -1,21 +1,34 @@
+const argv = require('yargs/yargs')(process.argv.slice(2)).argv;
 const blessed = require('blessed');
 const kanban = require('./src/components/pages/kanban')
 
-// Create a screen object.
-const screen = blessed.screen({
-  smartCSR: true,
-  fullUnicode: true,
-  log: 'list.log',
-  debug: true,
-  // dump: 'list.log'
-});
+function run() {
 
-new kanban(screen)
+  if (argv.init) {
+    const init = require('./src/init')
+    init.run()
+  }
 
-// Quit on Escape, q, or Control-C.
-screen.key(['escape', 'q', 'C-c'], function(ch, key) {
-  return process.exit(0);
-});
+  if (argv.up) {
+    // Create a screen object.
+    const screen = blessed.screen({
+      smartCSR: true,
+      fullUnicode: true,
+      log: 'list.log',
+      debug: true,
+      // dump: 'list.log'
+    });
+    
+    new kanban(screen)
+    
+    // Quit on Escape, q, or Control-C.
+    screen.key(['escape', 'q', 'C-c'], function(ch, key) {
+      return process.exit(0);
+    });
+    
+    // Render the screen.
+    screen.render();
+  }
+}
 
-// Render the screen.
-screen.render();
+module.exports = run

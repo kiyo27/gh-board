@@ -13,13 +13,15 @@ module.exports = function() {
   const errorMessages = {
     pat: 'Access token must be set as an environment variable.',
     name: 'Repository name must be set as an environment variable.',
-    owner: 'Repository owner must be set as an environment variable.'
+    owner: 'Repository owner must be set as an environment variable.',
+    projectName: 'Project name must be set as an environment variable.'
   }
 
   let config = {
     pat: process.env.ACCESS_TOKEN || null,
     name: process.env.REPO_NAME || null,
-    owner: process.env.REPO_OWNER || null
+    owner: process.env.REPO_OWNER || null,
+    projectName: process.env.PROJECT_NAME || null
   }
 
   for (const prop in config) {

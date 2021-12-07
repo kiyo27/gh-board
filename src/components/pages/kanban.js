@@ -1,7 +1,6 @@
 const KanbanTemplate = require('../templates/kanban')
 const query = require('../../api/query_project')
 const issue = require('../../api/query_issue')
-// const config = require('../../util/yaml')
 const config = require('../../util/config')
 
 module.exports = class {
@@ -81,7 +80,7 @@ module.exports = class {
   }
 
   addItem() {
-    query.project.then(data => {
+    query.project().then(data => {
       data.forEach(nodes => {
         let index = this.labels.indexOf(nodes.name)
         nodes.cards.nodes.forEach(content => {

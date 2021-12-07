@@ -13,9 +13,11 @@ WORKDIR /usr/app
 # Copy files necessary for build
 COPY src src
 COPY package.json package.json
+COPY bin bin
 COPY app.js app.js
 
-RUN npm install
+RUN npm install &&\
+    npm link
 
-ENTRYPOINT ["node"]
-CMD ["app.js"]
+ENTRYPOINT ["gh-board"]
+CMD [ "--up" ]

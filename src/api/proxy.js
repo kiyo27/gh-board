@@ -1,4 +1,3 @@
-const issue = require('./query_issue')
 const client = require('./client')
 
 class Proxy {

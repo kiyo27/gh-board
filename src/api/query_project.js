@@ -9,19 +9,21 @@ const graphQLClient = new GraphQLClient(endpoint, {
 })
 
 const query = gql`
-  query getIssues($name: String!, $owner: String!) {
+  query getIssues($name: String!, $owner: String!, $projectName: String!) {
     repository(name: $name, owner: $owner) {
-      project(number: 1) {
-        columns(first: 3) {
-          nodes {
-            name
-            cards {
-              nodes {
-                content {
-                  __typename
-                  ... on Issue {
-                    number
-                    title
+      projects(search: $projectName, first: 2) {
+        nodes {
+          columns(first: 3) {
+            nodes {
+              name
+              cards {
+                nodes {
+                  content {
+                    __typename
+                    ... on Issue {
+                      number
+                      title
+                    }
                   }
                 }
               }
@@ -35,13 +37,14 @@ const query = gql`
 
 const variables = {
     name: config.name,
-    owner: config.owner
+    owner: config.owner,
+    projectName: config.projectName
 }
 
 
 async function main() {
   const data = await graphQLClient.request(query, variables)
-  return data.repository.project.columns.nodes
+  return data.repository.projects.nodes[0].columns.nodes
 }
 
-exports.project = main()
+exports.project = main
