@@ -31,7 +31,7 @@ docker run -it --rm \
     -e REPO_NAME=<repository name> \
     -e PROJECT_NAME=<project board name> \
     -e ACCESS_TOKEN=<personal access token> \
-    ghcr.io/kiyo27/gh-board:0.1.0-beta --init
+    ghcr.io/kiyo27/gh-board:latest --init
 ```
 
 ``REPO_NAME``が環境変数として設定されていない場合は、``board-sample``というリポジトリが作成される。``PROJECT_NAME``が設定されていない場合は、``SampleProject``が作成される。
@@ -54,7 +54,7 @@ docker run -it --rm \
     -e REPO_NAME=<repository name> \
     -e PROJECT_NAME=<project board name> \
     -e ACCESS_TOKEN=<personal access token> \
-    ghcr.io/kiyo27/gh-board:0.1.0-beta --up
+    ghcr.io/kiyo27/gh-board:latest --up
 ```
 
 ``--up``フラグをつけて Docker image を起動すると、ターミナルアプリが起動される。

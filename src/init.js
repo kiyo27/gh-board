@@ -47,7 +47,7 @@ async function run() {
 
   // Create a sample issue
   const issue = await octokit.graphql(
-    `mutation ($title: String!, $body: String!, $projectIds: ID!, $repoId: ID!) {
+    `mutation ($title: String!, $body: String!, $projectIds: [ID!], $repoId: ID!) {
       createIssue(input:{title: $title, body: $body projectIds: $projectIds, repositoryId: $repoId}) {
         issue {
           projectCards(first: 1) {
@@ -68,7 +68,7 @@ async function run() {
 
   // Move the issue to the Backlog column
   const move = await octokit.graphql(
-    `mutation ($cardId: String!, $columnId: ID!) {
+    `mutation ($cardId: ID!, $columnId: ID!) {
       moveProjectCard(input:{cardId: $cardId, columnId: $columnId}) {
         cardEdge {
           node {
